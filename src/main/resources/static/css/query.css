@@ -1,0 +1,126 @@
+body{
+    background-image:url("../images/blueCross.jpeg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    animation: fadeIn 3s ease;
+    -moz-animation: fadeIn 3s ease; /* Firefox */
+    -webkit-animation: fadeIn 3s ease; /* Safari and Chrome */
+}
+
+h1,h2{
+    text-align:center;
+}
+.header{
+    width: 50%;
+}
+
+.columnContainer{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+img{
+    width: 20%;
+}
+
+.cloud{
+    display:table-cell;
+    background:#ECEFF1;
+    box-shadow: 10px 10px rgba(0,0,0,0.2);
+    border-radius:100px;
+    font-size: 14px;
+}
+
+.cloud::after, .cloud::before{
+    position:relative;
+    display:inline-block;
+    background:inherit;
+    border-radius:inherit;
+}
+.cloud::after{
+    width:100px;
+    height:100px;
+    top:-220px;
+    left:50px;
+}
+.cloud::before{
+    width:180px;
+    height:180px;
+    top: -70px;
+    left:130px;
+}
+
+.textCloud{
+    margin: 50px;
+}
+
+#form{
+    width: 100%;
+    height: 50%;
+}
+
+.myTable{
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 10px;
+    font-size: 20px;
+}
+
+.dot{
+    background-color:  white;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dots{
+    margin-left: 50px;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+input{
+    width: 160px;
+    font-size: 18px;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn { /* Safari and Chrome */
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.headline{
+    color:#0064ff;
+}
+
+.headContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+#bob{
+    width: 300px;
+}
+
+#doc{
+    text-align: center;
+    margin-left: 50px;
+}

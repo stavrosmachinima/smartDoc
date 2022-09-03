@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="shortcut icon" type="image/jpeg" href="images/favicon.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="HandheldFriendly" content="true">
+  <meta charset="utf-8">
+  <meta name="description" content="Everything about parental control">
+  <title>Check your health status here!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/query.css" media="screen"/>
+  <script src="./js/query.js" defer></script>
+</head>
+  <body id="content">
+  <div class="headContainer">
+  <div class="columnContainer">
+    <div><h1 style="font-size:32px;"><u>Smart Doctor</u></h1>
+      <h2 style="font-size:24px;">Check your health status here!</h2>
+    </div>
+    <div id="form">
+      <form action="#" method="post" th:action="@{/process}" th:object="${exams}">
+        <table class="myTable">
+          <tr>
+            <td><label for="age">Age:</label></td>
+            <td><input type="text" id="age" name="age" placeholder="45" th:field="*{age}" required></td>
+          </tr>
+          <tr>
+            <td><label for="sex">Sex:</label></td>
+            <td><select name="sex" id="sex" th:field="*{sex}" >
+              <option value="0" selected disabled>Select</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="cp">Chest Pain:</label></td>
+            <td><select name="cp" id="cp" th:field="*{chestPain}" required>
+              <option value="0" selected="selected" disabled="disabled">Select</option>
+              <option value="1">Typical angina</option>
+              <option value="2">Atypical angina</option>
+              <option value="3">Non-anginal pain</option>
+              <option value="4">Asymptomatic</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="bp">Blood Pressure:</label></td>
+            <td><input type="text" id="bp" name="bp" placeholder="130" th:field="*{bloodPressure}" required></td>
+          </tr>
+          <tr>
+            <td><label for="chol">Cholesterol:</label></td>
+            <td><input type="text" id="chol" name="chol" placeholder="233" th:field="*{cholesterol}" required></td>
+          </tr>
+          <tr>
+            <td><label for="fbs">Blood Sugar:</label></td>
+            <td><input type="text" id="fbs" name="fbs" placeholder="130"  th:field="*{bloodSugar}" required></td>
+          </tr>
+          <tr>
+            <td><label for="restecg">Electrocardiographic results:</label></td>
+            <td><select name="restecg" id="restecg" th:field="*{restecg}" required>
+              <option value="0" selected disabled>Select</option>
+              <option value="1">Normal</option>
+              <option value="2">ST-T wave abnormality</option>
+              <option value="3">Left ventricular hypertrophy</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="thalach">Max Heart Rate:</label></td>
+            <td><input type="text" id="thalach" name="thalach"  placeholder="150" th:field="*{heartRate}" required></td>
+          </tr>
+          <tr>
+            <td><label for="exang">Exercise induced angina:</label></td>
+            <td><select name="exang" id="exang" th:field="*{exang}" required>
+              <option value="0" selected disabled>Select</option>
+              <option value="1">No</option>
+              <option value="2">Yes</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="oldPeak">ST depression:</label></td>
+            <!-- float pattern="[0-9]+(\.[0-9]{1,2})?" to erwthmatiko kanei sto 3.32 to 32 part optional-->
+            <td><input type="text" id="oldPeak" name="oldPeak" placeholder="2.3" th:field="*{oldPeak}" required></td>
+          </tr>
+          <tr>
+            <td><label for="slope">Slope of ST segment:</label></td>
+            <td><select name="slope" id="slope" th:field="*{slope}" required>
+              <option value="0" selected disabled>Select</option>
+              <option value="1">Upsloping</option>
+              <option value="2">Flat</option>
+              <option value="3">Downsloping</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="ca">Major vessels:</label></td>
+            <td><select name="ca" id="ca" th:field="*{ca}" required>
+              <option value="0" selected disabled>Select</option>
+              <option value="1">0</option>
+              <option value="2">1</option>
+              <option value="3">2</option>
+              <option value="4">3</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="thal">Thalassemia:</label></td>
+            <td><select name="thal" id="thal" th:field="*{thal}" required>
+              <option value="0" selected disabled>Select</option>
+              <option value="3">Normal</option>
+              <option value="6">Fixed defect</option>
+              <option value="7">Reversable defect</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Ask" style="width:100px;margin-top:20px;" onclick="return validateForm();"></td>
+            <td><input type="reset" value="Cancel"  style="width:100px;margin-top:20px;margin-left:15px;"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+  <div class="columnContainer">
+    <div id="doc">
+      <img id="bob" src="./images/doc.png">
+    </div>
+    <div>
+      <div class="dots">
+        <span class="dot" style="width:40px;height:30px;margin-top:10px"></span>
+        <span class="dot" style="width:30px;height:25px;"></span>
+        <span class="dot" style="width:25px;height:20px;"></span>
+      </div>
+      <div class="cloud">
+        <div class="textCloud">
+          Hello, <br><br>My Name is <span style="color: blue">Bob</span> and I am here to guide you through completion of the form according to our medical standards. This way, we can achieve the most our of our Machine Learning Algorithms and giving you the most reliable result.<br>
+          First, we need you to have all the ECG results ready and you have to make sure the following attributes are according to the following specifications. <br><br>
+          <span class="headline"> Cholesterol</span>:Serum cholestoral in mg/dl <br>
+          <span class="headline">Blood Sugar</span>: Fasting Blood Sugar in mg/dl <br>
+          <span class="headline">Electrocardiographic results</span>: Resting Electrocardiographic Results <br>&emsp;
+           i) ST-T wave abnormality = T wave inversions and/or ST elevation or depression of > 0.05 mV <br>&emsp;
+           ii) Left ventricular hypertrophy = showing probable or definite left ventricular hypertrophy by Estes' criteria <br>
+          <span class="headline">ST depression</span>: Induced by exercise relative to rest <br>
+          <span class="headline">Slope of ST segment</span>: The slope of the peak exercise ST segment <br>
+          <span class="headline">Major Vessels</span>: number of major vessels (0-3) colored by flourosopy <br>
+          <span class="headline">Thalassemia</span>: <br>&emsp;
+            i) Fixed defect = No blood flow in some part of the heart <br>&emsp;
+            ii) Reversible defect = A blood flow is observed but it is not normal
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

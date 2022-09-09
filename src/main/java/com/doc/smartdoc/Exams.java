@@ -19,20 +19,20 @@ public class Exams {
 
     @Override
     public String toString() {
-        return "Exams{" +
-                "age=" + age +
-                ", sex=" + sex +
-                ", chestPain=" + chestPain +
-                ", bloodPressure=" + bloodPressure +
-                ", cholesterol=" + cholesterol +
-                ", bloodSugar=" + bloodSugar +
-                ", restecg=" + restecg +
-                ", heartRate=" + heartRate +
-                ", exang=" + exang +
-                ", oldPeak=" + oldPeak +
-                ", slope=" + slope +
-                ", ca=" + ca +
-                ", thal=" + thal +
+        return '{' +
+                "'age':" + age +
+                ", 'sex':" + sex +
+                ", 'chestPain':" + chestPain +
+                ", 'bloodPressure':" + bloodPressure +
+                ", 'cholesterol':" + cholesterol +
+                ", 'bloodSugar':" + bloodSugar +
+                ", 'restecg':" + restecg +
+                ", 'heartRate':" + heartRate +
+                ", 'exang':" + exang +
+                ", 'oldPeak':" + oldPeak +
+                ", 'slope':" + slope +
+                ", 'ca':" + ca +
+                ", 'thal':" + thal +
                 '}';
     }
 

@@ -5,6 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class smartDocController {
 
@@ -15,12 +19,29 @@ public class smartDocController {
     }
 
     @PostMapping("/process")
-    public String processData(Exams exams)
-    {
-        System.out.println(exams);
+    public String processData(Exams exams) throws IOException, InterruptedException {
+        //System.out.println("Old:"+exams);
         transform(exams);
-        System.out.println(exams);
-        return "query.html";
+        System.out.println("Transformed:"+exams);
+        FileWriter myWriter=new FileWriter("src/main/resources/static/python/parameters.txt");
+        myWriter.write(exams.toString());
+        myWriter.close();
+        System.out.println("Successfully written to file");
+        boolean prediction=predict();
+         return "query.html";
+    }
+
+    private boolean predict() throws IOException, InterruptedException {
+        ProcessBuilder processBuilder=new ProcessBuilder("python3","src/main/resources/static/python/model.py");
+        processBuilder.redirectErrorStream(true);
+
+        Process process=processBuilder.start();
+        BufferedReader results=new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String prediction=results.lines().collect(Collectors.joining());
+        int exitCode=process.waitFor();
+        System.out.println("ExitCode:"+exitCode);
+        System.out.println("Prediction:"+prediction);
+        return "1".equals(prediction);
     }
 
     private void transform(Exams exams){

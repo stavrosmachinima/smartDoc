@@ -1,0 +1,1 @@
+{'age':32, 'sex':2, 'chestPain':1, 'bloodPressure':43, 'cholesterol':432, 'bloodSugar':false, 'restecg':1, 'heartRate':423, 'exang':1, 'oldPeak':43.0, 'slope':1, 'ca':2, 'thal':6}

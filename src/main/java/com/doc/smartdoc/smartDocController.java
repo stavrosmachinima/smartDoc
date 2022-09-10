@@ -4,9 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.io.*;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -27,7 +25,10 @@ public class smartDocController {
         myWriter.write(exams.toString());
         myWriter.close();
         System.out.println("Successfully written to file");
-        boolean prediction=predict();
+        exams.destroy();
+        boolean result=predict();
+        System.out.println("Result:"+result);
+        exams.setResult(result);
          return "query.html";
     }
 

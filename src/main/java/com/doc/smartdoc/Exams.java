@@ -1,6 +1,8 @@
 package com.doc.smartdoc;
 
 public class Exams {
+
+    private Boolean result;
     private Integer age;
     private int sex;
     private int chestPain;
@@ -15,7 +17,22 @@ public class Exams {
     private int slope;
     private int ca;
     private int thal;
-    private Boolean result;
+
+    public void destroy(){
+         this.age=null;
+         this.sex=0;
+         this.chestPain=0;
+         this.bloodPressure=null;
+         this.cholesterol=null;
+         this.bloodSugar=null;
+         this.restecg=0;
+         this.heartRate=null;
+         this.exang=0;
+         this.oldPeak=null;
+         this.slope=0;
+         this.ca=0;
+         this.thal=0;
+    }
 
     @Override
     public String toString() {
@@ -34,6 +51,14 @@ public class Exams {
                 ", 'ca':" + ca +
                 ", 'thal':" + thal +
                 '}';
+    }
+
+    public Boolean isResult() {
+        return result;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
     public Integer getAge() {
@@ -138,13 +163,5 @@ public class Exams {
 
     public void setThal(int thal) {
         this.thal = thal;
-    }
-
-    public Boolean getResult() {
-        return result;
-    }
-
-    public void setResult(Boolean result) {
-        this.result = result;
     }
 }

@@ -15,12 +15,18 @@
 </head>
   <body id="content">
   <div class="headContainer">
+    <span class="hiddenData" id="result" th:text="${exams.result}">null</span>
+    <div id="resultBlock" class="headContainer">
+      <div id="infected" class="undisplayed"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3088.405250505083!2d26.374433565485635!3d39.27905918196128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba887f5f9f684f%3A0x68f6eb8707d0a05!2zzpHPg8-Az4HOv8-Az4zPhM6xzrzOv8-CIDgxMSAwNA!5e0!3m2!1sel!2sgr!4v1662832582236!5m2!1sel!2sgr" style="border:0;" width="100%" height="94%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <img class="undisplayed" id="disinfected" src="/images/congrats.jpeg" alt="Congratulations">
+      <p id="message"></p>
+    </div>
   <div class="columnContainer">
     <div><h1 style="font-size:32px;"><u>Smart Doctor</u></h1>
       <h2 style="font-size:24px;">Check your health status here!</h2>
     </div>
-    <div id="form">
-      <form action="#" method="post" th:action="@{/process}" th:object="${exams}">
+    <div id="formBlock">
+      <form id="form" action="#" method="post" th:action="@{/process}" th:object="${exams}" autocomplete="off">
         <table class="myTable">
           <tr>
             <td><label for="age">Age:</label></td>
@@ -111,7 +117,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><input type="submit" value="Ask" style="width:100px;margin-top:20px;" onclick="return validateForm();"></td>
+            <td><input id="submit" type="submit" value="Ask" style="width:100px;margin-top:20px;" onclick="return validateForm()"></td>
             <td><input type="reset" value="Cancel"  style="width:100px;margin-top:20px;margin-left:15px;"></td>
           </tr>
         </table>
@@ -120,7 +126,7 @@
   </div>
   <div class="columnContainer">
     <div id="doc">
-      <img id="bob" src="./images/doc.png">
+      <img id="bob" src="./images/doc.png" alt="Bob doctor">
     </div>
     <div>
       <div class="dots">

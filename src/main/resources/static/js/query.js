@@ -1,7 +1,26 @@
 $( document ).ready(function() {
     $('#begin').fadeIn(1500);
+    var flag=document.getElementById("result").innerHTML;
+    console.log(flag);
+    if (flag){
+        if (flag=='true'){
+            showResults('Attention Attention!!<br><br><br>You are in grave danger. Here is the best Doctor in Universe. You should visit him.');
+            document.getElementById('infected').style.display='block';
+        }
+        else{
+            showResults('Everything is allright. You have nothing to fear!');
+            document.getElementById('disinfected').style.display='block';
+        }
+        showResults("<br><br><br>Thank you for using our services.");
+    }
 });
 
+function showResults(message){
+    document.getElementById('resultBlock').style.display='flex';
+    var msg=document.getElementById('message');
+    msg.innerHTML+=message;
+    msg.style.lineHeight
+};
 
 function validateForm() {
     var alertmsg1 = "You must fill the following required fields";

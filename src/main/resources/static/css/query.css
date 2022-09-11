@@ -166,3 +166,18 @@ input{
 #disinfected{
     margin: 15px;
 }
+
+/* The close button */
+.closebtn {
+    margin-left: 20px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+}

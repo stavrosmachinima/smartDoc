@@ -13,7 +13,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-
+import os
+import glob
 import joblib
 
 def findColumnQM(df):
@@ -27,9 +28,9 @@ def findColumnQM(df):
 def replaceQMwithMode(df):
 	questionColumn=findColumnQM(df)
 	for i in questionColumn:
-		df[i].replace('?',df[i].mode().values[0],inplace=True)
-	
-
+		modeDf=df.drop(df[df[i]=='?'].index)
+		df[i].replace('?',modeDf[i].mode().values[0],inplace=True)
+		df[i]=df[i].astype(float)
 
 def diseaseAgeCorrelation(df):
 	pd.crosstab(df.Age,df.AHD).plot(kind="bar")
@@ -56,41 +57,55 @@ def heatMap(df):
 	sns.heatmap(corr, annot=True)
 	plt.show()
 
-def logic():
+def loadData():
 	columns=['Age','Sex','ChestPain','RestBP','Chol','Fbs','RestECG','MaxHR','ExAng','Oldpeak','Slope','Ca','Thal','AHD']
-	df=pd.read_csv("../data/processed.cleveland.data",names=columns)
-	df.loc[df['AHD']>1,'AHD']=1
+	path=r'../data'
+	all_files=glob.glob(os.path.join(path,"*.data"))
+	df_from_each_file=(pd.read_csv(f,names=columns,sep=' |,',engine='python') for f in all_files)
+	df=pd.concat(df_from_each_file,ignore_index=True)
+	return df
 
+def cleanData(df):
+	df.loc[df['AHD']>1,'AHD']=1
+	df.replace(-9,'?',inplace=True)
 	# find most common values per column to combat '?' values
 	# QM = Question Mark
 	replaceQMwithMode(df)
-	df['Ca']=df['Ca'].astype(float)
-	df['Thal']=df['Thal'].astype(float)
-
 	X=df.drop(['AHD'],axis=1).values
 	Y=df['AHD'].values
+	return X,Y
+
+def logic():
+	df=loadData()
+	# deixnei posa data exoume mesa
+	#print(df.shape[0])
+	# deixnei ton typo twn kolwnwn
+	#print(df.dtypes)
+	
+	X,Y=cleanData(df)
 
 	# print(np.count_nonzero(Y==0))
 	# print(np.count_nonzero(Y==1))
-	# Apo ta parapanw apotelesmata diakrinoume oti kamia ta3h den einai overrepresented. Ara dn xreiazetai na xrhsimopoihsoume stratifiedKfold
+	# Apo ta parapanw prints apotelesmata diakrinoume oti kamia ta3h den einai overrepresented. Ara dn xreiazetai na xrhsimopoihsoume stratifiedKfold
 
-	# *********** StandardScaler comes into play when the characteristics of the input dataset differ greatly between their ranges, or simply when they are measured in different units of measure. *******
+	# StandardScaler comes into play when the characteristics of the input dataset differ greatly between their ranges, or simply when they are measured in different units of measure. 
 	# scale=StandardScaler()
 	# X=scale.fit_transform(X)
 	# print('ScaledX:'+str(X))
+
 	X_train, X_test, Y_train, Y_test = train_test_split(X,Y,test_size=0.3, random_state=42)
-	model=LinearDiscriminantAnalysis()
+	model=RandomForestClassifier()
 	model.fit(X_train,Y_train)
 	Y_pred=model.predict(X_test)
 
-	testArray=[41.0,0.0,3.0,112.0,268.0,0.0,2.0,172.0,1.0,0.0,1.0,0.0,3.0]
+	# testArray=[58.0,1.0,3.0,112.0,230.0,0.0,2.0,165.0,0.0,2.5,2.0,1.0,7.0]
 
-	print(model.predict(np.asarray(testArray).reshape(1,-1)))
+	# print(model.predict(np.asarray(testArray).reshape(1,-1)))
 
 	# ****** Accuracy ********
 
 	score=round(accuracy_score(Y_pred,Y_test)*100,2)
-	print("Accuracy of LinearDiscriminantAnalysis is: "+str(score)+"%")
+	print("Accuracy of RandomForestClassifier is: "+str(score)+"%")
 
 
 	# ****** Cross validation Scores *******
@@ -113,7 +128,7 @@ def logic():
 	models=[]
 	models.append(('RFC',RandomForestClassifier()))
 	models.append(('LR',LogisticRegression(solver='liblinear',multi_class='ovr')))
-	models.append(('LDA',model))
+	models.append(('LDA',LinearDiscriminantAnalysis()))
 	models.append(('KNN',KNeighborsClassifier()))
 	models.append(('CART', DecisionTreeClassifier()))
 	models.append(('NB', GaussianNB()))

@@ -1,5 +1,7 @@
 $( document ).ready(function() {
-    $('#begin').fadeIn(1500);
+    $(".closebtn").click(function(){
+        $("#resultBlock").fadeOut();
+    });
     var flag=document.getElementById("result").innerHTML;
     console.log(flag);
     if (flag){

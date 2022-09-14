@@ -1,1 +1,1 @@
-{'age':43, 'sex':1, 'chestPain':1, 'bloodPressure':434, 'cholesterol':434, 'bloodSugar':false, 'restecg':1, 'heartRate':434, 'exang':0, 'oldPeak':12.0, 'slope':1, 'ca':0, 'thal':3}
+{'age':45, 'sex':2, 'chestPain':1, 'bloodPressure':150, 'cholesterol':230, 'bloodSugar':false, 'restecg':0, 'heartRate':150, 'exang':0, 'oldPeak':2.3, 'slope':2, 'ca':0, 'thal':7}

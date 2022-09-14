@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.io.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 @Controller
@@ -27,7 +29,7 @@ public class smartDocController {
         System.out.println("Successfully written to file");
         exams.destroy();
         boolean result=predict();
-        System.out.println("Result:"+result);
+        System.out.println("Result "+ LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))+"->"+result);
         exams.setResult(result);
          return "query.html";
     }

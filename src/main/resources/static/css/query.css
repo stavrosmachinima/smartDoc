@@ -1,5 +1,5 @@
 body{
-    background-image:url("../images/blueCross.jpeg");
+    background-image:url("../images/blueCross.png");
     background-repeat:no-repeat;
     background-size:cover;
     animation: fadeIn 3s ease;
@@ -9,9 +9,6 @@ body{
 
 h1,h2{
     text-align:center;
-}
-.header{
-    width: 50%;
 }
 
 .columnContainer{
@@ -114,7 +111,6 @@ input{
     background-color: #fe9e75;
     position: absolute;
     margin: auto;
-    width: 50%;
     height: 50%;
     border-radius: 30px;
     left: 0;
@@ -126,20 +122,18 @@ input{
     animation: fadeInAlert 3s ease;
     -moz-animation: fadeInAlert 3s ease; /* Firefox */
     -webkit-animation: fadeInAlert 3s ease; /* Safari and Chrome */
+    max-width: 1000px;
 }
 
 .undisplayed{
-    width: 50%;
+    width: 100%;
     display: none;
 }
 
 #message{
     text-align: center;
-    margin-right: 5px;
-    margin-top: 10%;
     overflow: hidden;
-    width: 50%;
-    font-size: 1vw;
+    font-size: 3vmin;
 }
 
 #infected{

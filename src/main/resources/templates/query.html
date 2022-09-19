@@ -17,8 +17,8 @@
   <div class="headContainer">
     <span class="hiddenData" id="result" th:text="${exams.result}">null</span>
     <div id="resultBlock" class="headContainer">
-      <span class="closebtn">&times;</span>
-      <div id="infected" class="undisplayed"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6175.702129673752!2d26.132262301175725!3d39.29162803431274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba96d2fa54a45b%3A0x6a8149223c4d5b98!2zzqPOus6_z4XPhM6xz4HOv8-CIDgxMSAwOQ!5e0!3m2!1sel!2sgr!4v1662906138607!5m2!1sel!2sgr" width="100%" height="94%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <span class="closebtn">&times;</span> <!-- width="100%" height="94%" -->
+      <div id="infected" class="undisplayed"></div>
       <img class="undisplayed" id="disinfected" src="/images/congrats.jpeg" alt="Congratulations">
       <div class="columnContainer" style="justify-content: center">
         <p id="message"></p>
@@ -139,7 +139,7 @@
       </div>
       <div class="cloud">
         <div class="textCloud">
-          Hello, <br><br>My Name is <span style="color: blue">Fanaftra</span> and I am here to guide you through completion of the form according to our medical standards. This way, we can achieve the most our of our Machine Learning Algorithms and giving you the most reliable result.<br>
+          Hello, <br><br>My Name is <span style="color: blue">Bob</span> and I am here to guide you through completion of the form according to our medical standards. This way, we can achieve the most our of our Machine Learning Algorithms and giving you the most reliable result.<br>
           First, we need you to have all the ECG results ready and you have to make sure the attributes are according to the following specifications. <br><br>
           <span class="headline"> Blood Pressure</span>:in mm Hg on admission to the hospital<br>
           <span class="headline"> Cholesterol</span>:Serum cholestoral in mg/dl <br>
@@ -154,9 +154,9 @@
             i) Fixed defect = No blood flow in some part of the heart <br>&emsp;
             ii) Reversible defect = A blood flow is observed but it is not normal
           <br> <br>
-          Prediction: Our algorithms have been tested with an 80-85% success rate.
+          <u>Prediction</u>: Our algorithms have been tested with an 80-85% success rate.
           <br> <br>
-          <span style="font-size: 16px;"><i>Privacy Concern: We do not use or hold your personal data for any commercial reason.</i></span>
+          <span style="font-size: 16px;"><i><u>Privacy Concern</u>: Please do accept to access your location, so we can offer our services better. We do not use or hold your personal data for any commercial reason.</i></span>
         </div>
       </div>
     </div>
@@ -164,5 +164,6 @@
   </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHw9cky0jbbEnjTasMwWNsK8iRnqj2zso&callback=initMap&libraries=places&v=weekly" defer async></script>
   </body>
 </html>
